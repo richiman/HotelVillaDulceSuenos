@@ -33,12 +33,11 @@ $(document).ready(function(){
 
                     Swal.fire({
                         title: "DATOS DE USUARIO",
-                        text: "LA INFORMACION DEL clinte HA SIDO ACTUALIZADA",
+                        text: "LA INFORMACION DEL CLIENTE HA SIDO ACTUALIZADA",
                         type: "success",
                     })
                         .then(function() {
-                          console.log(json.error);
-                            //window.location.reload();
+                          window.location.reload();
                         });
                 }else if(json.code == 404){
                     alert("clinte no encontrado");
@@ -127,10 +126,8 @@ function deleteCliente(id){
                 }else if(json.code == 404){
                     alert("Cliente no encontrado");
                 }else if(json.code == 500){
-                    console.log("LOL",json.error);
                 }else{
                     alert("Error en el servidor, por favor intentelo mas tarde");
-                    console.log(json.error);
                 }
             }).fail(function(){
 

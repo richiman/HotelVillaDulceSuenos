@@ -16,7 +16,7 @@
 
     <section class="principal">
 
-        <div class="container ">
+        <div class="container">
             <div class="row">
                 <label style="background: #0275d8; color: #0275d8">[----------------------]</label>
                 <label>Pre-Reservas</label>
@@ -35,23 +35,23 @@
             <button class="btn btn-dark" onclick="printTable()">imprimir</button>
         </div>
 
-        <div id="datos" class="col" style="overflow-y: scroll;">
-            <table id='tabla' class='table table-striped table-bordered' style='width:100%'>
+        <div id="datos" class="col-md-12" style="overflow-y: scroll;">
+            <table   id='tabla' class='table table-striped table-bordered' style='width:100%'>
                 <thead class='thead-light'>
                 <tr id='titulo'>
                     <th scope='col'>FOLIO</th>
                     <th scope='col'>NOMBRE</th>
                     <th scope='col'>TELEFONO</th>
                     <th scope='col'>CORREO</th>
-                    <th scope='col'>LLEGA</th>
-                    <th scope='col'>SALE</th>
-                    <th scope='col'>ADULTOS</th>
-                    <th scope='col'>NIÑOS</th>
-                    <th scope='col'>CUARTO</th>
-                    <th scope='col'>PRECIO</th>
+                    <th scope='col'>LLEGA </th>
+                    <th scope='col'>SALE </th>
+                    <th scope='col'>ADULTOS </th>
+                    <th scope='col'>NIÑOS </th>
+                    <th scope='col'>CUARTO  </th>
+                    <th scope='col'>PRECIO </th>
                     <th scope='col'>COMENTARIOS</th>
                     <th scope='col'>Opciones</th>
-                    <th scope='col'>Registrado</th>
+                    <th scope='col'>Registrado Por</th>
                     <th scope='col'>Fecha de Registro</th>
                 </tr>
                 </thead>

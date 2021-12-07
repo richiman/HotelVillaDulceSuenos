@@ -827,21 +827,21 @@ class WebController extends Controller
                 }
             }
 
-              //se envia el correo a los que reservan
-                    $reserva = Reserva::where('folio', '=', $folio)->first();
-                    $cliente = Cliente::find($reserva->idCliente);
-                    $habitacion = Habitacion::findOrFail($reserva->idHabitacion);
+              //AQUI VA LO DEL CORREO------------------
+              //      $reserva = Reserva::where('folio', '=', $folio)->first();
+              //      $cliente = Cliente::find($reserva->idCliente);
+              //      $habitacion = Habitacion::findOrFail($reserva->idHabitacion);
 
-                    $data = array('email' => $cliente->correo,'reserva' => $reserva, 'cliente' => $cliente, 'habitacion' => $habitacion);
-                    Mail::send('utils.mail', $data, function ($message) use ($data) {
-                        $message->from('reservas@villadulcesuenos.com', 'Tenemos una nueva reservación');
-                        $message->to($data["email"]);
-                        $message->subject('Nueva reservación');
-                        $message->attach('politicas_2020.pdf', [
-                            'as' => 'politicas_2020.pdf',
-                            'mime' => 'application/pdf',
-                        ]);
-                    });
+              //      $data = array('email' => $cliente->correo,'reserva' => $reserva, 'cliente' => $cliente, 'habitacion' => $habitacion);
+              //      Mail::send('utils.mail', $data, function ($message) use ($data) {
+              //          $message->from('reservas@villadulcesuenos.com', 'Tenemos una nueva reservación');
+              //          $message->to($data["email"]);
+              //          $message->subject('Nueva reservación');
+              //          $message->attach('politicas_2020.pdf', [
+              //              'as' => 'politicas_2020.pdf',
+              //              'mime' => 'application/pdf',
+              //          ]);
+              //      });
 
             return Response::json(['code' => 200, 'data' => 'Reservacion Registrada']);
         } catch (Exception $e) {

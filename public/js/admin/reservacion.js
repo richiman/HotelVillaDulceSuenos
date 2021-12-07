@@ -6,7 +6,6 @@ $(document).ready(function () {
         type:"get",
         data: {},
     }).done(function(json){
-        console.log(json);
         var algo = "";
         for(var i in json){
             algo += "<option value='"+json[i].id+"' title='"+json[i].nombre+"'>"+json[i].nombre+" ( "+json[i].estado+")</option>";
@@ -35,7 +34,6 @@ $(function(){
     });
 
     $("#status").on("change",function () {
-        console.log($("#status").val());
         if($("#status").val() == 3){
             $("#llegada").attr('readonly',true);
             var d = new Date();
@@ -58,14 +56,13 @@ $(function(){
         for(let i = 0; i<cuartos.length; i++){
             for(let j in precios){
                 if(precios[j].numero == cuartos[i]){
-                    console.log(dias,total);
                     total += Number(precios[j].costo);
                 }
             }
 
         }
 
-        $('#total').val(`$ ${total}`);
+        $('#total').val(`${total}`);
     });
 
     $("#adultos").on('focusout',async function(){
@@ -76,12 +73,23 @@ $(function(){
             type:"get",
             data: {llegada:$('#llegada').val(),salida:$("#salida").val(),adultos:$("#adultos").val()},
         }).done(function(json){
+            /*var algo = "";
+               for(var i in json){
+                   let costo = json[i].pa;
 
+                   algo += "<option value='"+json[i].numero+"' title='"+json[i].numero+"'>"+json[i].numero+" ( "+json[i].capacidad+" personas) " +
+                       "$"+costo+" por noche</option>";
+
+                   precios.push({"numero":json[i].numero,"costo":costo});
+                }
+
+                $("#cuarto").html(algo);
+                $("#cuarto").selectpicker("refresh");*/
 
             let render = "";
             json.forEach((item) => {
                 precios.push({"numero":item.numero,"costo":item.TOTAL});
-                render += `<option value="${item.numero}" title="${item.numero}">${item.numero} (${item.capacidad} personas - Total $ ${item.TOTAL})</option>`;
+                render += `<option value="${item.numero}" title="${item.numero}">${item.numero} (${item.capacidad} personas - Total $${item.TOTAL})</option>`;
             });
 
             $("#cuarto").html(render);

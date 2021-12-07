@@ -96,10 +96,8 @@
                     <input type="text" id="data_5"   class="form-control" name="txtcorreo" required="" autocomplete="off"
                         placeholder="Si no cuenta con correo ingresar un guion -">
                 </div>
-
             </form>
         </div>
-
         <div class=" text-center">
             <input type="submit" class="btn btn-lg btn-success  center-block" name="guardar" id="btnReservacion" >
         </div>
@@ -154,8 +152,6 @@
 @section('script')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="{{asset('/js/admin/reservacion.js')}}"></script>
 @stop

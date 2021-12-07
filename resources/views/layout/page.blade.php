@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('style.css')}}">
     @yield('styles')
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    
+
 </head>
 <body>
 <!-- Preloader -->
@@ -40,8 +40,6 @@
                             <a href="https://www.facebook.com/Villas-Dulce-Sue%C3%B1os-275521032907394/"><i class="fab fa-facebook-square" style="font-size:20px;"></i></a>
                             <a href="https://www.instagram.com/villasdulcesuenos"><i class="fab fa-instagram" style="font-size:20px;"></i></a>
                             <a href=" https://wa.me/+523221491491?text=Me%20gustaría%20saber%20mas%20informacion%20de%20su%20hotel"><i class="fab fa-whatsapp" style="font-size:20px;"></i></a>
-
-
                         </div>
                     </div>
                 </div>

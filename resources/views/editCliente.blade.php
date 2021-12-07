@@ -10,15 +10,11 @@
             {{csrf_field()}}
             <input type="hidden" id="id" value="{{$cliente->id}}">
             <div style="padding-bottom: 18px;font-size : 24px;" class="text-center">Edite los datos del cliente</div>
-
-
              <div class="form-group">
                <label for="exampleInputEmail1">ID:</label>
                <input type="text" id="data_2"   class="form-control  col-md" name="txtid" required="" value="{{$cliente->id}}" readonly="">
                <small id="emailHelp" class="form-text text-muted">Identificador unico de cliente.</small>
-
              </div>
-
              <div class="form-group">
              <label for="exampleInputEmail1">Nombre:</label>
              <input type="text" id="data_1"   class="form-control col-md" name="txtnombre"   required="" value="{{$cliente->nombre}}">
@@ -44,7 +40,7 @@
              </div>
 
              <div class="form-group">
-             <label >Estado :</label>
+             <label >Vehiculo :</label>
              <input type="text" id="data_5" class="form-control col-md" name="txtvehiculo"   required="" value="{{$cliente->vehiculo}}">
              <small id="emailHelp" class="form-text text-muted">Datos del vehiculo del cliente.</small>
              </div>

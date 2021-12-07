@@ -43,11 +43,16 @@ function buscar_datos(consulta){
                     if(data['status']=="1"){
                         confirmar = "<button class='btn btn-warning btn-sm' onclick='hospedar("+data['id']+")'>Reservar</button>";
                     }
-
-                    if($("#tipoempleado").val() == "1"){
-                        editar = "<a class='btn btn-secondary btn-sm' href='https://villadulcesuenos.com/editreserva/"+data['id']+"' ><i class='fa fa-edit'></i></a>";
-                        button = "<button class='btn btn-danger btn-sm' onclick='eliminar(" + data['id'] + ")'><i class='fa fa-trash-o'></i></button>";
+                    if(data['status']!="3"){
+                        if($("#tipoempleado").val() == "1"){
+                            editar = "<a class='btn btn-secondary btn-sm' href='http://villadulcesuenos.com/editreserva/"+data['id']+"' ><i class='fa fa-edit'></i></a>";
+                        }
+                        button = "<button class='btn btn-danger btn-sm' onclick='eliminar("+data['id']+")'><i class='fa fa-trash-o'></i></button>";
                     }
+
+                if(data['status']=="3" && $("#tipoempleado").val() == "1"){
+                    button = "<button class='btn btn-danger btn-sm' onclick='eliminar("+data['id']+")'><i class='fa fa-trash-o'></i></button>";
+                }
 
                     let salida = "<div align='center'>" +
                         confirmar+"<br>"+editar+button+
@@ -60,14 +65,15 @@ function buscar_datos(consulta){
         aaSorting:[[4,'asc']],
         createdRow:function (row,data,dataIndex) {
             switch(data['status']){
-                case '1': $(row).addClass('bg-primary');
+                case 1: $(row).addClass('bg-primary');
                     break;
 
-                case '2': $(row).addClass('bg-warning');
+                case 2: $(row).addClass('bg-warning');
                     break;
 
-                case '3': $(row).addClass('bg-success');
+                case 3: $(row).addClass('bg-success');
                     break;
+
                 default: $(row).addClass('bg-success');
             }
         }
