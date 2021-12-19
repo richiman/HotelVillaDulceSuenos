@@ -7,7 +7,9 @@ $(document).ready(function () {
         data: {},
     }).done(function(json){
         var algo = "";
+        algo += "<option value='' title=''>Buscar cliente</option>";
         for(var i in json){
+
             algo += "<option value='"+json[i].id+"' title='"+json[i].nombre+"'>"+json[i].nombre+" ( "+json[i].estado+")</option>";
         }
 

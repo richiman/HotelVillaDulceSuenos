@@ -16,8 +16,8 @@
                     <th scope="col" rowspan="2">Status</th>
                     <th scope="col" rowspan="2">Folio</th>
                     <th scope="col" colspan="2">Limpieza</th>
-                    <th scope="col" rowspan="2">Salida</th>
                     <th scope="col" rowspan="2">Entrada</th>
+                    <th scope="col" rowspan="2">Salida</th>
                     <th scope="col" rowspan="2">Encargada</th>
                     <th scope="col" rowspan="2">Nota</th>
 
@@ -48,8 +48,8 @@
                     <td>{{$row["salida"]["folio"]}}</td>
                     <td contenteditable="true" style="text-transform: uppercase; font-weight: bold;" onkeyup="cambio()"></td>
                     <td contenteditable="true" style="text-transform: uppercase; font-weight: bold;" onkeyup="cambio()"></td>
-                    <td contenteditable="true" style="text-transform: uppercase; font-weight: bold;" onkeyup="cambio()">{{$diaHoy == $row["salida"]["fechasalida"] ? $row["salida"]["folio"] : ''}}</td>
-                    <td contenteditable="true" style="text-transform: uppercase; font-weight: bold;" onkeyup="cambio()">{{$row["llegada"]["folio"]}}</td>
+                    <td contenteditable="true" style="text-transform: uppercase; font-weight: bold;" onkeyup="cambio()">{{$row["llegada"]["fechallegada"]}}</td>
+                    <td contenteditable="true" style="text-transform: uppercase; font-weight: bold;" onkeyup="cambio()">{{$row["llegada"]["fechasalida"]}}</td>
                     <td style="width: 20%; font-weight: bold;" contenteditable="true" onkeyup="cambio()">
                     <td style="width: 20%; font-weight: bold;" contenteditable="true" onkeyup="cambio()">
 

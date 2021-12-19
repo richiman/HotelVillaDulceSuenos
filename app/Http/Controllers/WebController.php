@@ -13,6 +13,8 @@ use App\Prereserva;
 use App\Reserva;
 use App\Reservam;
 use App\Visita;
+use App\User;
+
 use Illuminate\Http\Request;
 //use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Cookie;
@@ -35,6 +37,7 @@ class WebController extends Controller
         if ($cookie == null) {
             return view('home');
         }
+
         return redirect(route('menu'));
     }
 
@@ -48,6 +51,8 @@ class WebController extends Controller
         $tipos = [];
         $visitas = Visita::all();
         $counter = 0;
+        $usuarios = Empleado::all();
+        $reservas = Reserva::groupBy('idEmpleado')->selectRaw('count(*) as total, idEmpleado')->get();
         foreach ($visitas as $visita) {
             $counter = $counter + $visita->count;
         }
@@ -108,8 +113,7 @@ class WebController extends Controller
         $entradas = Reserva::where('tipo', '=', 3)->where('fechallegada', '=', $hoy)->count();
         $salidas = Reserva::where('tipo', '=', 3)->where('fechasalida', '=', $hoy)->count();
 
-        return view('menu', ["empleado" => $user, 'tipos' => $tipos,
-            "entradas" => $entradas, "salidas" => $salidas, 'counter' => $counter]);
+        return view('menu', ['reservas'=>$reservas,'usuarios'=> $usuarios ,"empleado" => $user, 'tipos' => $tipos,"entradas" => $entradas, "salidas" => $salidas, 'counter' => $counter]);
     }
 
     //listo
@@ -153,22 +157,33 @@ class WebController extends Controller
                 ->where('fechasalida', '>=', $hoy)
                 ->where('idHabitacion', '=', $habitacion->id)
                 ->first();
+                if($habitacion->mantenimiento == 1){
+                  $habitacion->Estado = 5;
 
-            if($hospedajeSalida) {
-                if($hospedajeSalida->fechasalida == $hoy) {
-                    if($hospedajeLlegada) {
-                        $totalOcupado += 1;
-                        $habitacion->Estado = 2;
-                    } else {
-                        $habitacion->Estado = 3;
-                    }
-                } else {
-                    $totalOcupado += 1;
-                    $habitacion->Estado = 2;
-                }
-            } else {
-                $habitacion->Estado = 1;
-            }
+                }else {
+
+
+                if($hospedajeLlegada){
+                  $habitacion->Estado = 4;
+                  $totalOcupado += 1;
+                }else {
+                  if($hospedajeSalida) {
+                      if($hospedajeSalida->fechasalida == $hoy) {
+                          if($hospedajeLlegada) {
+                              $totalOcupado += 1;
+                              $habitacion->Estado = 2;
+                          } else {
+                              $habitacion->Estado = 3;
+                          }
+                      } else {
+                          $totalOcupado += 1;
+                          $habitacion->Estado = 2;
+                      }
+                  } else {
+                      $habitacion->Estado = 1;
+                  }
+          }
+        }
         }
         $porcentajeOcupado = ($totalOcupado * 100) / count($habitaciones);
         return view('status', ["empleado" => $user, 'habitaciones' => $habitaciones, 'f' => $fecha, 'hoy' => $hoy, 'porcentajeOcupado' => $porcentajeOcupado]);
@@ -221,7 +236,7 @@ class WebController extends Controller
         $user = Empleado::findOrFail($id);
         $cliente = Habitacion::where('numero', '=', $request->cod)->first();
         $hoy = date('Y-m-d');
-        $hospedaje = Reserva::select('Reservaciones.id', 'c.nombre', 'c.telefono', 'fechallegada', 'fechasalida')
+        $hospedaje = Reserva::select('Reservaciones.id', 'c.nombre','c.vehiculo' , 'c.telefono', 'fechallegada', 'fechasalida')
             ->where('fechallegada', '<=', $hoy)
             ->where('fechasalida', '>=', $hoy)
             ->where('idHabitacion', '=', $cliente->id)
@@ -408,7 +423,7 @@ class WebController extends Controller
 
         $sabana = $resultado;
 
-        return view('sabanaReservas', ["empleado" => $user, "mes" => $mes, 'diasdelmes' => $diasdelmes,
+        return view('sabanaReservas', ["empleado" => $user, "mes" => $mes,'fecha' =>  $fecha, 'diasdelmes' => $diasdelmes,
             'habitaciones' => $habitaciones, 'reservas' => $reservas, "year" => $year, 'sabana' => $sabana, 'ano' => $ano
         ]);
     }
@@ -591,10 +606,20 @@ class WebController extends Controller
     function getCli()
     {
         $clientes = Cliente::all();
-
         return Response::json($clientes);
     }
 
+    function getUsuarios()
+    {
+        $usuarios = Empleado::all();
+        return Response::json($usuarios);
+    }
+
+    function getReservasData()
+    {
+      $reservas = Reserva::groupBy('idEmpleado')->selectRaw('count(*) as total, idEmpleado')->get();
+        return Response::json($reservas);
+    }
     function getCostos()
     {
         try {
@@ -618,8 +643,8 @@ class WebController extends Controller
         $hoy = date("Y-m-d");
 
 
-        $query = Reserva::select('c.nombre', 'folio', 'c.telefono', 'Reservaciones.id', 'price',
-            'fechallegada', 'fechasalida', 'numero', 'adultos', 'ninos', 'c.correo', 'status', 'confirmado', 'comentario', 'created_at', 'e.nombre as name')
+        $query = Reserva::select('c.nombre', 'folio', 'c.telefono', 'Reservaciones.id', 'price','priceS',
+            'fechallegada', 'fechasalida', 'numero', 'adultos', 'c.correo', 'status', 'confirmado', 'comentario', 'created_at', 'e.nombre as name')
             ->where('fechasalida', '>=', $hoy)
             ->join('Clientes as c', 'c.id', 'Reservaciones.idCliente')
             ->join('Habitaciones as h', 'h.id', 'Reservaciones.idHabitacion')
@@ -787,6 +812,7 @@ class WebController extends Controller
                 $reserva->confirmado = false;
                 $reserva->comentario = $request->txtcomentario;
                 $reserva->price = $request->total;
+                $reserva->priceS = $request->totalS;
                 $reserva->save();
             }
 
@@ -898,6 +924,7 @@ class WebController extends Controller
             $reserva->adultos = $request->txtcantidadadultos;
             $reserva->ninos = $request->txtnumeroninos;
             $reserva->price = $request->total;
+            $reserva->priceS = $request->totalS;
             $reserva->save();
 
             if ($request->status == 2) {
@@ -1037,12 +1064,11 @@ class WebController extends Controller
 
             }
 
-            if (false !== strpos($correo, "@") && false !== strpos($correo, ".")) {
-                Mail::to($correo)->send(new Email($reserva->folio));
-            }
+             //  if (false !== strpos($correo, "@") && false !== strpos($correo, ".")) {
+            //    Mail::to($correo)->send(new Email($reserva->folio));
+            //}
 
             return Response::json(['code' => 200]);
-
         } catch (Exception $e) {
             return Response::json(['code' => 500, 'error' => $e]);
         }
@@ -1206,6 +1232,7 @@ class WebController extends Controller
             $h->c5 = $request->c5;
             $h->c6 = $request->c6;
             $h->pa = $request->pa;
+            $h->mantenimiento = $request->mantenimiento;
             $h->save();
 
             return Response::json(['code' => 200]);
@@ -1220,6 +1247,7 @@ class WebController extends Controller
 
             $reserva = Reserva::findOrFail($id);
             $reserva->confirmado = true;
+            $reserva->status = 2;
             $reserva->save();
 
             return Response::json(['code' => 200]);

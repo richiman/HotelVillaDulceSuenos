@@ -9,19 +9,25 @@
             {{csrf_field()}}
             <input type="hidden" value="{{$hospedaje->id}}" id="cuarto">
             <div style="padding-bottom: 18px;font-size : 24px;" class="text-center"><h1>Habitacion: {{$cliente->numero}}</h1>
-            
+
             </div>
             <div style="padding-bottom: 18px;font-size : 24px;" class="text-center"><h4>Porcentaje de ocupacion:</h4>
-            
+
             </div>
             <div style="display: flex; padding-bottom: 18px;width : 450px;">
-                <div style=" margin-left : 0; margin-right : 1%; width : 100%;">Nombre Huepesd: <span
+                <div style=" margin-left : 0; margin-right : 1%; width : 100%;">Nombre Hueped: <span
                         style="color: red;"> *</span><br/>
 
                     <input type="text" id="data_2" style="width: 100%;" class="form-control" name="txtnombres" required=""
                            value="{{$hospedaje->nombre}}" readonly>
                 </div>
-
+            </div>
+            <div style="display: flex; padding-bottom: 18px;width : 450px;">
+                <div style=" margin-left : 0; margin-right : 1%; width : 100%;">Vehiculo: <span
+                        style="color: red;"> *</span><br/>
+                    <input type="text"  style="width: 100%;" class="form-control"  required=""
+                           value="{{$hospedaje->vehiculo}}" readonly>
+                </div>
             </div>
             <div style="padding-bottom: 18px;">Num. Tel<span style="color: red;"> *</span><br/>
                 <input type="text" id="data_4" style="width : 450px;" class="form-control" name="txtnum"

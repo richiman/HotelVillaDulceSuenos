@@ -14,8 +14,7 @@
                 <div style="font-size : 24px;" class="text-center">Llene los datos del Hospedaje  </div>
                 <div style="display: flex; padding-bottom: 18px;width : 450px;">
                     <div class="col-md-11">Cliente<span style="color: red;"> *</span><br/>
-                        <select name="idCli" id="idCli" class="selectpicker form-control" data-live-search="true">
-
+                        <select name="idCli" id="idCli" class="selectpicker form-control" data-live-search="true" placeholder="Buscar cliente" required>
                         </select>
                     </div>
                     <div class="col-md-2">
@@ -62,10 +61,14 @@
                 </div>
 
                 <div class="container" style="padding: 1%">
-                    <label for="total">Total</label>
+                    <label for="total">Total real</label>
                     <input type="text" id="total" name="total" class="form-control" readonly>
                 </div>
 
+                <div class="container" style="padding: 1%">
+                    <label for="total">Total sugereido</label>
+                    <input type="text" id="totalS" name="totalS" class="form-control" >
+                </div>
                 <div class="form-group">
                     <label>Tipo de Reservacion</label>
                     <br>

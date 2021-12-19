@@ -1,4 +1,4 @@
-@extends('layout.admin')
+  @extends('layout.admin')
 
 @section('content')
 
@@ -40,17 +40,14 @@
                 <?php  foreach ($habitaciones as $row){ // aca puedes hacer la consulta e iterarla con each. 	?>
                 <?php switch($row['Estado']):
                 case 1: ?>
-                <div onclick="" style="cursor: pointer;" alt="Ver reservasiones"
+                <div onclick="" style="cursor: pointer;" alt="Ver reservaciones"
                      class="square bg-success text-white  rounded ">
                     <div>
-                        <small>Habitación: </small><br />
-
-                        <small>Disponible </small>
+                      <small class="font-weight-bold">Disponible hoy </small><br>
+                        <small>Habitación:</small>
                     </div>
                     <div class="text-center  ">
-                        <h3>{{$row['numero']}}</h3>
-
-
+                        <h4>{{$row['numero']}}</h4>
                     </div>
                 </div>
                 <?php break; ?>
@@ -58,12 +55,13 @@
                 <div onclick="location.href='/roominfo?&cod=<?php echo $row['numero']; ?>'"
                      style="cursor: pointer;" class="square bg-danger text-white rounded">
                     <div>
-                        <small>Habitación: </small><br />
+                      <small class="font-weight-bold">Ocupada </small>
+                      <br>
+                      <small>Habitación:   </small>
 
-                        <small>Ocupada </small>
                     </div>
                     <div class="text-center text-white rounded">
-                        <h3>  <?php echo $row['numero'] ?></h3>
+                        <h4>  <?php echo $row['numero'] ?></h4>
                     </div>
                 </div>
                 <?php break; ?>
@@ -72,11 +70,34 @@
                      style="cursor: pointer;" class="square text-white bg-warning rounded">
                     <div>
                         <small>Habitación: </small><br />
-
                         <small>Salida </small>
                     </div>
                     <div class="text-center ">
-                        <h3><?php echo $row['numero'] ?></h3>
+                        <h4><?php echo $row['numero'] ?></h4>
+                    </div>
+                </div>
+                <?php break; ?>
+                <?php case 4: ?>
+                <div onclick="location.href='/roominfo?&cod=<?php echo $row['numero']; ?>'"
+                     style="cursor: pointer;" class="square text-white bg-info rounded">
+                    <div>
+                        <small>Habitación: </small><br />
+                        <small>Entrada</small>
+                    </div>
+                    <div class="text-center ">
+                        <h4><?php echo $row['numero'] ?></h4>
+                    </div>
+                </div>
+                <?php break; ?>
+                <?php case 5: ?>
+                <div onclick="location.href='/roominfo?&cod=<?php echo $row['numero']; ?>'"
+                     style="cursor: pointer;" class="square text-white bg-dark rounded">
+                    <div>
+                        <small>Habitación: </small><br />
+                        <small>Mantenimiento</small>
+                    </div>
+                    <div class="text-center ">
+                        <h4><?php echo $row['numero'] ?></h4>
                     </div>
                 </div>
                 <?php break; ?>

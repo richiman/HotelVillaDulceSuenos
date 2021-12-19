@@ -57,6 +57,10 @@
                     <label for="total">Total</label>
                     <input type="text" id="total" name="total" class="form-control" readonly>
                 </div>
+                <div class="container" style="padding: 1%">
+                    <label for="total">Total sugerido</label>
+                    <input type="text" id="totalS" name="totalS" class="form-control" >
+                </div>
 
                 <br>
 

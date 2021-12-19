@@ -183,7 +183,7 @@ function eliminar(id){
     })
 }
 
-function editModal(id,numero,capacidad,tipo,c1,c2,c3,c4,c5,c6,pa) {
+function editModal(id,numero,capacidad,tipo,c1,c2,c3,c4,c5,c6,pa,mantenimiento) {
     $("#idH").val(id);
     $("#ec").val(capacidad);
     $("#en").val(numero);
@@ -201,6 +201,8 @@ function editModal(id,numero,capacidad,tipo,c1,c2,c3,c4,c5,c6,pa) {
     $("#eco6").val(c6);
 
     $("#epa").val(pa);
+    $("#mantenimiento").val(mantenimiento);
+
 
     $("#modalEdit").modal('show');
 }

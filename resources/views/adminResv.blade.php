@@ -17,38 +17,27 @@
     <section class="principal">
 
         <div class="container">
-            <div class="row">
-                <label style="background: #0275d8; color: #0275d8">[----------------------]</label>
-                <label>Pre-Reservas</label>
-            </div>
-            <div class="row">
-                <label style="background: #f0ad4e; color: #f0ad4e">[----------------------]</label>
-                <label>Reservas</label>
-            </div>
-            <div class="row">
-                <label style="background: #bdecb6; color: #bdecb6">[----------------------]</label>
-                <label>Hospedados</label>
+            <div class="d-flex justify-content-around">
+                <label class="rounded shadow" style="background: #007bff; color: #007bff">[-----------<label class="text-light font-weight-bold">Pre-Reservas</label>-----------]</label>
+                <label class="rounded shadow" style="background: #ffc107; color: #ffc107">[------------<label class="text-light font-weight-bold">Reservas</label>----------]</label>
+                <label class="rounded shadow" style="background: #28a745; color: #28a745">[------------<label  class="text-light font-weight-bold">Hospedados</label>----------]</label>
+                <button class="btn btn-dark shadow" onclick="printTable()">imprimir</button>
             </div>
         </div>
-
-        <div class="container">
-            <button class="btn btn-dark" onclick="printTable()">imprimir</button>
-        </div>
-
         <div id="datos" class="col-md-12" style="overflow-y: scroll;">
-            <table   id='tabla' class='table table-striped table-bordered' style='width:100%'>
+            <table   id='tabla' class='table table-striped table-sm table-bordered  ' style='width:100%'>
                 <thead class='thead-light'>
                 <tr id='titulo'>
                     <th scope='col'>FOLIO</th>
                     <th scope='col'>NOMBRE</th>
                     <th scope='col'>TELEFONO</th>
                     <th scope='col'>CORREO</th>
-                    <th scope='col'>LLEGA </th>
-                    <th scope='col'>SALE </th>
-                    <th scope='col'>ADULTOS </th>
-                    <th scope='col'>NIÑOS </th>
-                    <th scope='col'>CUARTO  </th>
-                    <th scope='col'>PRECIO </th>
+                    <th scope='col'>LLEGA</th>
+                    <th scope='col'>SALE</th>
+                    <th scope='col'>A</th>
+                    <th scope='col'>Cuar</th>
+                    <th scope='col'>P$</th>
+                    <th scope='col'>PS$</th>
                     <th scope='col'>COMENTARIOS</th>
                     <th scope='col'>Opciones</th>
                     <th scope='col'>Registrado Por</th>
@@ -57,8 +46,6 @@
                 </thead>
             </table>
         </div>
-
-
     </section>
 @stop
 

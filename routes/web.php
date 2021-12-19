@@ -150,6 +150,13 @@ Route::get('/getrep',[
 Route::get('/repeys',[
    'uses' => "WebController@getEntradasSalidas"
 ]);
+Route::get('/getusuarios',[
+    'uses' => 'WebController@getUsuarios',
+]);
+Route::get('/getreservas',[
+    'uses' => 'WebController@getReservasData',
+]);
+
 //-------------------------------POST
 
 Route::post('/newcosto', [

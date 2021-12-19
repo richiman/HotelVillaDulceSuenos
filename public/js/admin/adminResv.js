@@ -5,7 +5,7 @@ $(document).ready(function(){
 function buscar_datos(consulta){
     $('#tabla').DataTable({
         "retrieve": true,
-        "paging": false,
+        "paging": true,
         "processing": true,
         "serverSide": true,
         "ajax": {
@@ -20,9 +20,9 @@ function buscar_datos(consulta){
             { "data": "fechallegada" },
             { "data": "fechasalida" },
             { "data": "adultos" },
-            { "data": "ninos" },
             { "data": "numero" },
             { "data": "price" },
+            { "data": "status" },
             { "data": "comentario" },
             { "data": function (data) {
                 let confirmar = "";
@@ -40,12 +40,12 @@ function buscar_datos(consulta){
                             }
                         }
                     }
-                    if(data['status']=="1"){
-                        confirmar = "<button class='btn btn-warning btn-sm' onclick='hospedar("+data['id']+")'>Reservar</button>";
+                    if(data['status']=='1'){
+                        confirmar = "<button class='btn btn-warning btn-sm' onclick='confirmar("+data['id']+")'>Confirmar</button>";
                     }
-                    if(data['status']!="3"){
+                    if(data['status']!="2"){
                         if($("#tipoempleado").val() == "1"){
-                            editar = "<a class='btn btn-secondary btn-sm' href='http://villadulcesuenos.com/editreserva/"+data['id']+"' ><i class='fa fa-edit'></i></a>";
+                            editar = "<a class='btn btn-secondary btn-sm' href='editreserva/"+data['id']+"' ><i class='fa fa-edit'></i></a>";
                         }
                         button = "<button class='btn btn-danger btn-sm' onclick='eliminar("+data['id']+")'><i class='fa fa-trash-o'></i></button>";
                     }

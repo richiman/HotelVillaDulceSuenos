@@ -12,4 +12,10 @@ class Empleado extends Model
     protected $fillable = [
         'id','nombre','user','password','tipo','fincion','telefono','correo',"creado",
     ];
+
+    public function reservacion()
+    {
+      return $this->hasMany(Reserva::class,  'idEmpleado');
+    }
+  
 }

@@ -72,7 +72,7 @@
         <form action="{{action('WebController@previusMonth')}}" method="GET">
             <button type="submit" class="btn btn-primary">&larr;Anterior</button>
         </form>
-        <h3 align="center"><a href="#">{{$mesname}}</a></h3>
+        <h3 align="center">{{$fecha}} {{$mesname}}</h3>
         <form action="{{action('WebController@nextMonth')}}" method="GET">
             <button class="btn btn-primary">Siguiente&rarr;</button>
         </form>
@@ -135,7 +135,6 @@
             function formatFecha(fecha) {
                 let fuch = new Date(fecha + "T12:00:00");
                 var day = fuch.getDate();
-
                 var monthIndex = fuch.getMonth();
                 var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
                 var year = fuch.getFullYear();
@@ -360,12 +359,40 @@
                             </div>
                         @else
                             @foreach($val2 as $reservacion)
-
-
+                                @if($reservacion->confirmado == 0)
+                                  <div style=" background-color: #007bff;"
+                                      data-tipo="reservacion"
+                                      data-folio="{{$reservacion->folio}}"
+                                      data-dias="{{$reservacion->dias}}"
+                                      data-inicio-dia="{{$reservacion->dia}}"
+                                      data-fin-dia="{{$reservacion->dia_fin}}"
+                                      data-color=""
+                                      data-cliente-nombre="{{$reservacion->nombre}}"
+                                      data-cliente-correo="{{$reservacion->correo}}"
+                                      data-cliente-telefono="{{$reservacion->telefono}}"
+                                      data-reservacion-adultos="{{$reservacion->adultos}}"
+                                      data-reservacion-folio="{{$reservacion->folio}}"
+                                      data-reservacion-ninos="{{$reservacion->ninos}}"
+                                      data-reservacion-fecha-llegada="{{$reservacion->fechallegada}}"
+                                      data-reservacion-fecha-salida="{{$reservacion->fechasalida}}"
+                                      data-mes-salida="{{$reservacion->mes_salida}}"
+                                      data-mes-inicio="{{$reservacion->mes_inicio}}"
+                                      data-ano-inicio="{{$reservacion->ano_inicio}}"
+                                      data-ano-salida="{{$reservacion->ano_salida}}"
+                                      data-tipo="reservacion"
+                                      data-toggle="tooltip"
+                                      data-placement="top"
+                                      data-html="true"
+                                      title="Cliente: {{$reservacion->nombre}} Habitación:{{$key0}}"
+                                      class="dias-mes reservam ">
+                                      <small>
+                                          <b>{{$reservacion->folio}}</b>
+                                      </small>
+                                  </div>
+                                @else
                                 <div
                                     data-tipo="reservacion"
                                     data-folio="{{$reservacion->folio}}"
-
                                     data-dias="{{$reservacion->dias}}"
                                     data-inicio-dia="{{$reservacion->dia}}"
                                     data-fin-dia="{{$reservacion->dia_fin}}"
@@ -386,13 +413,13 @@
                                     data-toggle="tooltip"
                                     data-placement="top"
                                     data-html="true"
-                                    title="Folio:{{$reservacion->folio}} Habitación:{{$key0}} Estado:{{$reservacion->confirmado}}"
+                                    title="Cliente: {{$reservacion->nombre}} Habitación:{{$key0}} "
                                     class="dias-mes reservam">
                                     <small>
                                         <b>{{$reservacion->folio}}</b>
                                     </small>
                                 </div>
-
+                                  @endif
                             @endforeach
                         @endif
                     @endforeach

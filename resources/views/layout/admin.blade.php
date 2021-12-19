@@ -48,7 +48,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini sidebar-collapse">
 <div class="wrapper">
 
     <header class="main-header">
@@ -88,9 +88,8 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left ">
-                    <label style="color: white; font-weight: bold; font-size: x-large">{{$empleado->nombre}} </label>
+                    <label style="color: white; font-weight: bold; font-size: x-large"><small>{{$empleado->nombre}}</small> </label>
                 </div>
-
             </div>
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->

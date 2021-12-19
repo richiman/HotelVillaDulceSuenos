@@ -46,7 +46,8 @@
                                     '{{$habitacion->c4}}',
                                     '{{$habitacion->c5}}',
                                     '{{$habitacion->c6}}',
-                                    '{{$habitacion->pactivo}}'
+                                    '{{$habitacion->pactivo}}',
+                                    '{{$habitacion->mantenimiento}}'
                                 )"><i class="fa fa-edit"></i></button>
                                 <button class="btn btn-danger" onclick="eliminar('{{$habitacion->id}}')"><i class="fa fa-trash-o"></i></button>
                             </div>
@@ -143,6 +144,7 @@
                                         <option value="6">Costo 6</option>
                                     </select>
                                 </div>
+
                             </div>
                         </form>
                     </div>
@@ -231,6 +233,13 @@
                                         <option value="4">Costo 4</option>
                                         <option value="5">Costo 5</option>
                                         <option value="6">Costo 6</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <label for="pa">Mantenimiento</label>
+                                    <select name="mantenimiento" id="mantenimiento" class="form-control selectpicker" >
+                                       <option value="0">No</option>
+                                        <option value="1">Si</option>
                                     </select>
                                 </div>
                             </div>

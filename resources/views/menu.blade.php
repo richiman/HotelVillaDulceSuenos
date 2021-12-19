@@ -121,70 +121,84 @@
                 </div>
             </div>
         </div>
-        <hr>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="box" id="imprimible" >
+                  <div class="box-header with-border text-center">
+                      <h3 class="text-center">Estadisticos de ejecutivos</h3>
+                  </div>
+                  <div class="box-body">
+                          <div class="row"  style="height:600px;">
+                              <div class="col-md-6">
+                                  <canvas id="ejecutivosChart"></canvas>
+                              </div>
+                              <div class="col-md-6">
+                                <h3 class="text-center">Lista de ventas por ejecutivo</h3>
+                                  <div class="row">
+                                  <div class="col-md">
+                                <ul class="list-group">
+                                  @foreach ($usuarios as $value)
+                                      <li class="list-group-item"><small>{{ $value->nombre }}</small></li>
+                                  @endforeach
+                                </ul>
+                              </div>
+                              <div class="col-md">
+                                <ul class="list-group">
+                                @foreach ($reservas as $value)
+                                    <li class="list-group-item">{{ $value->total }}</li>
+                                @endforeach
+                                </ul>
+                                </div>
+                                </div>
+                              </div>
+                          </div>
+                  </div>
+              </div>
+          </div>
+        </div>
         <!-- Main row -->
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Reporte de Reservaciones</h3>
-
-
+                        <h3 class="text-center">Reporte de Reservaciones</h3>
                     </div>
-                    <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="text-center">
-                                    <strong>Comparacion de reservaciones de este año contra el pasado</strong>
-                                </p>
-
-                                <div class="chart">
-                                    <!-- Sales Chart Canvas -->
-                                    <canvas id="salesChart" style="height: 180px;"></canvas>
-                                </div>
-                                <!-- /.chart-responsive -->
-                            </div>
-                        </div>
                         <br>
                             <div class="row">
-                                <!-- /.col -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <p class="text-center">
                                         <strong>Estadisticos de reservacion</strong>
                                     </p>
                                     @foreach($tipos as $tipo)
-
                                     <div class="progress-group">
                                         <span class="progress-text">{{$tipo['name']}}</span>
                                         <span class="progress-number">{{$tipo['value']}}</span>
-
                                         <div class="progress sm">
                                             <div class="progress-bar progress-bar-aqua" style="width: {{$tipo['porcentaje']}}%"></div>
                                         </div>
                                     </div>
                                         <br>
                                     @endforeach
-
                                 </div>
-                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    <p class="text-center">
+                                        <strong>Comparacion de reservaciones de este año contra el pasado</strong>
+                                    </p>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="chart">
+                                        <canvas id="salesChart" ></canvas>
+                                    </div>
+                                </div>
                             </div>
-
-                        <!-- /.row -->
                     </div>
-                    <!-- ./box-body -->
-                    <!-- /.box-footer -->
+                    <div id="rep1">
+                    </div>
                 </div>
-                <!-- /.box -->
-            </div>
-            <!-- /.col -->
-        </div>
-    <!-- /.content -->
-        <hr>
-
-        <div class="row">
-            <div id="rep1">
-
             </div>
         </div>
 @stop
@@ -193,9 +207,7 @@
     <!-- ChartJS -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="{{asset('bower_components/chart.js/Chart.js')}}"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="{{asset('/js/admin/home.js')}}"></script>
-        <script>
-
-        </script>
+        <script src="{{asset('/js/admin/estadistics.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @stop
